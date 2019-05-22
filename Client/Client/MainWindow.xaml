@@ -1,0 +1,44 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin="5">
+            <Label Content="Задание 1" HorizontalContentAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Выберите парметр ЗП"/>
+                <ComboBox x:Name="cbtype" Width="300">
+                    <TextBlock>Средняя за текущий месяц</TextBlock>
+                    <TextBlock>Максимальная за текущий месяц</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Введите имя сотрудника"/>
+                <TextBox Width="300" MaxLength="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="checkbox" Content="Показать уволенных" Click="CheckBox_Click"/>
+            </StackPanel>
+            <Button FontSize="18" Width="200" Content="Показать сотрудников"/>
+            <DataGrid x:Name="dg" Margin="0, 5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер сотрудника" Width="200"/>
+                    <DataGridTextColumn Header="Имя сотрудника" Width="200"/>
+                    <DataGridTextColumn Header="Размер ЗП" Width="200"/>
+                    <DataGridTextColumn Header="Дата выплаты" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="-139,291,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
