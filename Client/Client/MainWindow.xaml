@@ -3,42 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Client"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:local="clr-namespace:Client"        
+        mc:Ignorable="d"        
+        Title="MainWindow" Height="450" Width="620.742" MaxHeight="450" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <local:MyColorConverter x:Key="MyColorConverter" />
         <Style TargetType="Label">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="{Binding Зарплата, Converter={StaticResource MyColorConverter}}"/>
         </Style>
     </Window.Resources>
     <Grid>
         <StackPanel Margin="5">
-            <Label Content="Задание 1" HorizontalContentAlignment="Center"/>
+            <Label Content="Задание 1"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Выберите парметр ЗП"/>
-                <ComboBox x:Name="cbtype" Width="300">
-                    <TextBlock>Средняя за текущий месяц</TextBlock>
-                    <TextBlock>Максимальная за текущий месяц</TextBlock>
-                </ComboBox>
+                <ComboBox SelectionChanged="Cbtype_SelectionChanged" x:Name="cbtype" Width="300"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Введите имя сотрудника"/>
-                <TextBox Width="300" MaxLength="25"/>
+                <TextBox x:Name="EmployeeName" Width="300" MaxLength="25"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <CheckBox x:Name="checkbox" Content="Показать уволенных" Click="CheckBox_Click"/>
+                <CheckBox FontSize="18" x:Name="checkbox" Content="Показать уволенных сотрудников" Click="CheckBox_Click"/>
             </StackPanel>
-            <Button FontSize="18" Width="200" Content="Показать сотрудников"/>
-            <DataGrid x:Name="dg" Margin="0, 5">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Номер сотрудника" Width="200"/>
-                    <DataGridTextColumn Header="Имя сотрудника" Width="200"/>
-                    <DataGridTextColumn Header="Размер ЗП" Width="200"/>
-                    <DataGridTextColumn Header="Дата выплаты" Width="200"/>
-                </DataGrid.Columns>
+            <StackPanel Margin="5">
+                <Button FontSize="18" Width="250" Height="30" Content="Отправить запрос" Click="WatchEmployees_Click"/>
+                <Button FontSize="18" Width="250" Height="30" Content="Показать всех сотрудников" Click="WatchAllEmployees_Click"/>
+            </StackPanel>
+            
+            <DataGrid IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" MaxHeight="250" x:Name="dg" Margin="0, 5">
+
             </DataGrid>
         </StackPanel>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="-139,291,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
